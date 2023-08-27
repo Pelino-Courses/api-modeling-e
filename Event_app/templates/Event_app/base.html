@@ -1,0 +1,367 @@
+
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/custom.css">
+
+    <link rel="icon" href="img/student.ico">
+
+    <title>Conference App {% block title %}{% endblock %}</title>
+  </head>
+  <body id="home" data-spy="scroll" data-target=".navbar" data-offset="100">
+
+    <!-- navbar -->
+    <nav class="px-6 py-6 flex justify-between items-center border-b border-gray-200">
+            <a href="/" class="text-xl font-semibold">ConferenceApp</a>
+        <div class="space-x-6">
+         
+         <a href="{% url 'Event_app:index' %}" class="text-lg font-semibold hover:text-gray-500">Home</a>
+         {% comment %} <a href="{% url 'Event_app:contact' %}" class="text-lg font-semibold hover:text-gray-500">About</a> {% endcomment %}
+         <a href="{% url 'Event_app:list_of_all_event' %}" class="text-lg font-semibold hover:text-gray-500">Conference</a>
+         <a href="{% url 'Event_app:list_of_all_speaker' %}" class="text-lg font-semibold hover:text-gray-500">Speakers</a>
+         <a href="{% url 'Event_app:list_of_all_schedules' %}" class="text-lg font-semibold hover:text-gray-500">Schedule</a>
+         <a href="{% url 'Event_app:newEvent' %}" class="text-lg font-semibold hover:text-gray-500">Up comming Conference</a>
+         <a href="#" class="text-lg font-semibold hover:text-gray-500">Browser</a>
+         
+         {% if request.user.is_authenticated %}
+                 <a href="#" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Inbox</a>
+                 <a href="{% url 'dashboard:index' %}" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Dashboard</a>
+                 <a href="{% url 'Event_app:logout' %}" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Logout</a>
+            {% else %}
+                 <a href="{% url 'Event_app:signup' %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Sign up</a>
+                 <a href="{% url 'Event_app:login' %}" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Login</a>
+         {% endif %}
+           
+        </div>
+        </div>
+    </nav><!-- /navbar -->
+
+    <!-- jumbotron -->
+
+    <div class="jumbotron jumbotron-fluid bg-warning text-dark">
+        <div class="container text-sm-center pt-5">
+            <h1 class="display-4">Welcome to Web Conference Africa.</h1>
+            <p class="lead">A One-Day Conference About All Things you need.</p>
+            <div class="btn-group mt-4" role="group" aria-label="Callout buttons">
+                {% comment %} <a href="/newEvent"><button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#register">Register Now</button></a> {% endcomment %}
+                <a href="/newEvent" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#register">Register Now</a>
+                <a href="/list_of_all_speaker" class="btn btn-dark btn-lg">See Speakers</a>
+            </div>
+        </div>
+    </div><!-- /jumbotron -->
+
+    <div class="container pt-4">
+        <!-- about -->
+        <div id="about" class="row">
+          <div class="col-lg order-lg-2">
+            <h3 class="mb-3">About Full Stack Conf</h3>
+            <img class="mb-4 img-fluid rounded d-none d-sm-block" src="img/kigali.jpg" alt="kigali">
+            <p>Lorem ipsum dolor sit amet, consetetur sadipscingt accusam et justo duo dolores et ea rebum.</p>
+            <p>Lorem ipsum dolor sit amet, consetetur sadipscingt accusam et justo duo dolores et ea rebum.et justo duo dolores et ea rebum.</p>
+          </div>
+          <div class="col-lg order-lg-1">
+            <h3 class="mb-3">Expert Speakers</h3>
+            <p>Lorem ipsum dolor sit amet, consetetur sadipscingt accusam et justo duo dolores et ea rebum.</p>
+            <p>Lorem ipsum dolor sit amet, consetetur sadipscingt accusam et justo duo dolores et ea rebum.et justo duo dolores et ea rebum.</p>
+            <p>Lorem ipsum dolor sit amet, consetetur sadipscingt accusam et justo duo dolores et ea rebum.et justo duo dolores et ea rebum.</p>
+          </div>
+          <div class="col-lg order-lg-3">
+            <h3 class="mb-3">What you will Learn</h3>
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action">
+                        <strong>MongoDB</strong>: NoSQL Database
+                </a>
+                <a href="#" class="list-group-item list-group-item-action"><strong>Express</strong>: Framework for Node</a>
+                <a href="#" class="list-group-item list-group-item-action"><strong>React</strong>: JavaScript Library</a>
+                <a href="#" class="list-group-item list-group-item-action"><strong>Node JS</strong>: JavaScript Environment</a>
+                <a href="#" class="list-group-item list-group-item-action"><strong>ES2015</strong>: Latest JavaScript Version</a>
+                <a href="#" class="list-group-item list-group-item-action"><strong>Babel</strong>: JavaScript Compiler</a>
+            </div>
+          </div>
+        </div> <!-- /about-->
+
+        <!-- Speakers -->
+        {% block content%}
+        {% endblock%}
+        <!-- /Speakers -->
+
+        <!-- Schedule -->
+        <h1 id="schedule" class="display-4 text-center my-5 text-muted">Schedule</h1>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                    <h5 class="mb-1">Keynote: Internet of Things </h5>
+                    <span class="badge badge-pill badge-warning p-2">9:00am</span>
+                </div>
+                <p class="mb-1">Pelino</p>
+            </li>
+            <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                    <h5 class="mb-1">React Basics </h5>
+                    <span class="badge badge-pill badge-warning p-2">10:00am</span>
+                </div>
+                <p class="mb-1">James</p>
+            </li>
+            <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                    <h5 class="mb-1">Mongo!</h5>
+                    <span class="badge badge-pill badge-warning p-2">11:00am</span>
+                </div>
+                <p class="mb-1">Pelino</p>
+            </li>
+            <li class="list-group-item list-group-item-secondary">
+                <div class="d-flex justify-content-between">
+                    <h5 class="mb-1">Lunch</h5>
+                    <span class="badge badge-pill badge-warning p-2">12:00pm</span>
+                </div>
+                <p class="mb-1">Free Pizza</p>
+            </li>
+            <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                    <h5 class="mb-1">Intro: Node JS</h5>
+                    <span class="badge badge-pill badge-warning p-2">2:00pm</span>
+                </div>
+                <p class="mb-1">Pelino</p>
+            </li>
+            <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                    <h5 class="mb-1">Express </h5>
+                    <span class="badge badge-pill badge-warning p-2">3:00pm</span>
+                </div>
+                <p class="mb-1">Pelino</p>
+            </li>
+            <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                    <h5 class="mb-1">Babel</h5>
+                    <span class="badge badge-pill badge-warning p-2">4:00pm</span>
+                </div>
+                <p class="mb-1">Pelino</p>
+            </li>
+        </ul><!-- /Schedule -->
+
+        <!-- callout button -->
+        <button type="button" class="btn btn-outline-dark btn-lg d-block mx-auto my-5" data-toggle="modal" data-target="#register">Don't Miss out Register Now</button>
+        <!-- callout button -->
+
+        <!-- sign up form -->
+        <hr>
+        <div class="row py-4 text-muted">
+            <div class="col-md col-xl-5">
+                <p><strong>About Paragraph</strong></p>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscingt accusam et justo duo dolores.</p>
+            </div>
+            <div class="col-md col-xl-5 ml-auto">
+                <p><strong>Stay up to date on Paragraph Conference</strong></p>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="">
+                    <span>
+                        <a href="{% url 'Event_app:signup' %}" class="px-3 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl pt-0 hover:bg-teal-500"><button type="button">Sign up</button><a>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <hr><!-- /sign up form -->
+        <!-- Footer -->
+
+        <div class="row py-3">
+            <div class="col-md-7">
+                <ul class="nav">
+                    <li class="nav-item">
+                      <a class="nav-link text-dark" href="#">Community</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-dark" href="#">Tracks </a>
+                    </li>
+                    <li class="nav-item">
+                      <!-- Example split danger button -->
+                        <div class="btn-group dropup">
+                            <button type="button" class="btn btn-outline-dark">Other Confs</button>
+                            <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">CSS Conf</a>
+                            <a class="dropdown-item" href="#">Python Conf </a>
+                            <a class="dropdown-item" href="#">Ruby Conf</a>
+                            <a class="dropdown-item" href="#">Java Conf</a>
+                            </div>
+                        </div>
+                    </li>
+                  </ul>
+            </div>
+            <div class="col-md text-md-right">
+                <small>&copy; 2018 Full Stack Conf &amp; Paragraph</small>
+            </div>
+        </div><!-- /Footer -->
+
+      </div> <!-- /.container-->
+
+      <!-- ===============================================
+            FORM MODAL
+           =============================================== -->
+        <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="Register form" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header bg-warning text-dark">
+                    <h5 class="modal-title" id="exampleModalLabel">Register for Conference</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {% block content1%}
+                    {% endblock%}
+                    <!-- registration form -->
+                    
+                    {% comment %} <form>
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong>Hurry !</strong> Early bird registration ends in two days.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <h5 class="mb-4"> Basic Info.</h5>
+
+                        <div class="form-group">
+                            <label class="form-control-label" for="name">Name: </label>
+                            <input type="text" class="form-control" id="name" >
+                        </div> 
+                        <div class="form-group">
+                            <label class="form-control-label" for="email">Email:</label>
+                            <input type="email" class="form-control" id="email">
+                        </div>
+                        <div>
+                            <label for="role">Job Role:</label>
+                            <select class="custom-select form-control" id="role">
+                                <option value="Full Stack js Developer">Full Stack JS Developer</option>
+                                <option value="Front End Developer">Front End Developer</option>
+                                <option value="Back End Developer">Back End Developer</option>
+                                <option value="designer">Designer</option>
+                                <option value="student">Student</option>
+                            </select>
+                        </div>
+                        <hr class="my-4">
+                        <h5 class="mb-4">Which Topics Interest You Most?</h5>
+
+                        <div class="form-check">
+                            <label class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                <label class="custom-control-label" for="customCheck1">JavaScript Frameworks</label>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                <label class="custom-control-label" for="customCheck2">JavaScript Libraries</label>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck3">
+                                <label class="custom-control-label" for="customCheck3">Node.js</label>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck4">
+                                <label class="custom-control-label" for="customCheck4">Build Tools</label>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck5">
+                                <label class="custom-control-label" for="customCheck5">ES2015</label>
+                            </label>
+                        </div>
+
+                        <hr class="mb-4">
+                        <h5 class="mb-4">Payment Info.</h5>
+                        <div class="form-row">
+                            <div class="col-lg-6 form-group">
+                                <label for="cc-num">Card Number:</label>
+                                <input type="text" id="cc-num" class="form-control">
+                            </div>
+
+                            <div class="col-lg">
+                                <label for="zip">Zip Code:</label>
+                                <input type="text" id="zip" class="form-control">
+                            </div>
+
+                            <div class="col-lg">
+                                <label for="cvv">CVV:</label>
+                                <input type="text" id="cvv" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <label class="col-lg-12" >Expiration Date:</label>
+                            <div class="form-group col-lg-8"> 
+                                 <select name="" id="" class="custom-select form-control">
+                                     <option value="1">1 - January</option>
+                                     <option value="2">2 - February</option>
+                                     <option value="3">3 - March</option>
+                                     <option value="4">4 - April</option>
+                                     <option value="5">5 - May</option>
+                                     <option value="6">6 - June</option>
+                                     <option value="7">7 - July</option>
+                                     <option value="8">8 - August</option>
+                                     <option value="9">9 - September</option>
+                                     <option value="10">10 - October</option>
+                                     <option value="11">11 - November</option>
+                                     <option value="12">12 - December</option>
+                                 </select>
+                            </div>
+                            <div class="form-group col-lg "> 
+                                    <select name="" id="" class="custom-select form-control">
+                                        <option value="2016">2016</option>
+                                        <option value="2017">2017</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2019">2019</option>
+                                        <option value="2020">2020</option>
+                                        <option value="2021">2021</option>
+                                    </select>
+                            </div>
+                        </div>
+
+                        <hr class="mb-4">
+
+                        <button type="submit" class="btn btn-dark btn-lg">Register</button>
+                    </form><!-- /registration form --> {% endcomment %}
+                </div>
+                </div>
+            </div>
+            </div> 
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+  <footer class="py-6 px-6 flex justify-between bg-gray-800">
+    <div class="w-2/3 pr-10">
+       <h3 class="mb-5 font-semibold text-gray-400">About</h3>
+
+       <p class="text-lg text-gray-500">Welcome to our website. </p>
+    </div>
+    <div class="w-1/3">
+       <h3 class="mb-5 font-semibold text-gray-400">Menu</h3>
+
+      <ul class="space-y-2">
+         <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">About</a></li>
+         <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">Contact</a></li>
+         <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">Privacy Policy</a></li>
+         <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">Terms of use</a></li>
+      </ul>
+    </div>
+  </footer> 
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 30px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333333;
+        }
+        
+        h2 {
+            color: #007BFF;
+        }
+        
+        .details {
+            margin-bottom: 20px;
+        }
+        
+        p {
+            color: #666666;
+            margin: 5px 0;
+        }
+        
+        .back-link {
+            text-align: center;
+        }
+        
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+    </style>
+    <title>Speaker Details</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Speaker Details</h1>
+        <div class="details">
+            <h2>Title: {{ mymember.title }}</h2>
+            <p>Description: {{ mymember.description }}</p>
+            <p>Start Date: {{ mymember.start_date }}</p>
+            <p>End Date: {{ mymember.end_date }}</p>
+            <p>Location: {{ mymember.location }}</p>
+            <p>Category: {{ mymember.category }}</p>
+            <p>Payment Method: {{ mymember.is_free}}</p>
+        </div>
+        <p class="back-link">Back to <a href="/list_of_all_event">List of Events</a></p>
+    </div>
+</body>
+</html>

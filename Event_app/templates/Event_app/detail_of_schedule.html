@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Reset default margin and padding */
+        body, h1, p {
+          margin: 0;
+          padding: 0;
+        }
+        
+        /* Center the schedule container */
+        .schedule-container {
+          width: 90%;
+          max-width: 800px;
+          margin: 50px auto;
+          padding: 20px;
+          border: 1px solid #ccc;
+          border-radius: 10px;
+          background-color: #f2f2f2;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Style for the h1 element */
+        h1 {
+          font-size: 36px;
+          font-weight: bold;
+          margin-bottom: 20px;
+          color: #333; /* Dark gray color */
+        }
+        
+        /* Style for event title */
+        .event-title {
+          font-size: 28px;
+          font-weight: bold;
+          margin-bottom: 15px;
+          color: #007bff; /* Blue color */
+        }
+        
+        /* Style for time */
+        .time {
+          font-size: 20px;
+          margin-bottom: 10px;
+          color: #666; /* Gray color */
+        }
+        
+        /* Style for speaker */
+        .speaker {
+          font-size: 20px;
+          font-style: italic;
+          color: #333; /* Dark gray color */
+        }
+
+    </style>
+  <title>Single Schedule</title>
+
+</head>
+<body>
+  <div class="schedule-container">
+    <h1>{{mymember.topic }}</h1>
+    <p class="event-title">{{mymember.event_managment.title }}</p>
+    <p class="time">Start Time: {{ mymember.start_time }}</p>
+    <p class="time">End Time: {{ mymember.end_time }}</p>
+    <p class="speaker">Speaker: {{ mymember.speaker_management.name }}</p>
+  </div>
+</body>
+</html>
