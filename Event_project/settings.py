@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'dashboard',
     'django_seed',
     'rest_framework',
-    'drf-yasg',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
