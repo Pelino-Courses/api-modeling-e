@@ -4,9 +4,8 @@ ASSIGNMENT EVENT MANAGEMENT
 Team Members:
 --------------
 1. Name:RUTAGENGWA Justin        RegNo: 221016176         Department:INFORMATION TECHINOLOGY
-2. Name:GASASIRA JEAN FELIX      RegNo: 221009548         Department:INFORMATION TECHNOLOGY
-3. Name:Mugeni yvonne        RegNo: 221008236         Department: COMPUTER SCIENCE
-4. Name:  INGABIRE Gentille      RegNo:  221009513        Department: Computer Science 
+2. Name: MUKAMUSONI Emmerance     RegNo: 221020964          Department:INFORMATION TECHNOLOGY
+
 
 
 Instructions
