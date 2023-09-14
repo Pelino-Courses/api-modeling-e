@@ -36,6 +36,27 @@ def add_speaker_api(request):
        else:
            return Response(seriarizer.errors, status=400)
 
+#a list of all events.
+@api_view(['GET'])
+def list_of_all_event(request):
+       myevent = event_managment.objects.all().values()
+       seriarizer = event_managmentSerializer(myevent, many= True)
+       return Response(seriarizer.data)
+
+#details of a specific event by its title.
+@api_view(['GET'])
+def details_of_event(request, id):
+    myevent = event_managment.objects.get(id=id)
+    seriarizer = event_managmentSerializer(myevent, many= True)
+       return Response(seriarizer.data)
+
+#the upcoming events based on the current date.
+@api_view(['GET'])
+def upcoming_events(request):
+       myevent = event_managment.objects.filter(start_date__gte=timezone.now()).values() 
+       seriarizer = event_managmentSerializer(myevent, many= True)
+       return Response(seriarizer.data))
+
 
 
 
