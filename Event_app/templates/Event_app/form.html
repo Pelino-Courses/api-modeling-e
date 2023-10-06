@@ -1,0 +1,51 @@
+{% extends 'Event_app/base.html' %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+{% comment %} <h1 class='mb-6 text-3xl'>{{ title }}</h1>
+<div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="Register form" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header bg-warning text-dark">
+            <h5 class="modal-title" id="exampleModalLabel">Register for Conference</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body"> {% endcomment %}
+                <form method="post" action="." enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>Hurry !</strong> Early bird registration ends in two days.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="space-y-4">
+                        {{ form.as_p}}
+                    </div>
+
+                    
+                    {% if form.errors or form.non_field_errors %}
+                            <div class="mb-3 p-6 bg-red-100 rounded-xl">
+                                
+                                {% for field in form %}
+                                    {{ field.errors }}
+                                {% endfor %}
+
+                                {{ form.non_field_errors }}  
+                                    
+                            </div>
+                    {% endif %}
+                    <button class="mt-6 py-4 px-8 btn btn-dark btn-lg text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white">Register</button>
+                    {% comment %} <button type="submit" class="btn btn-dark btn-lg">Register</button> {% endcomment %}
+                </form> 
+{% comment %}
+</div>
+</div>
+</div>
+</div>        {% endcomment %}
+{% endblock content %}
+    

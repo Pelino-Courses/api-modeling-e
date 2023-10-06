@@ -1,0 +1,23 @@
+{% extends 'Event_app/base.html' %}
+
+{% block title %}
+    Welcome
+{% endblock title %}
+    
+
+{% block content %}
+   <h1>The contact page</h1>
+   <h1>All paid events</h1>
+    {% for item in paid %}
+      <div>
+            <div class="div">
+              {% comment %} <img src="{{ item.image }}" class="rounded-xl" alt="Photo"> {% endcomment %}
+            </div>
+            <div class="p-6 bg-white rounded-b-xl">
+                   <h2 class="text-exl">{{ item.title }}</h2>
+                   {% comment %} p<p class="text-gray-500">Price: {{ item.Price}}</p> {% endcomment %}
+            </div>
+      </div>
+    {% endfor %}
+{% endblock content %}
+    

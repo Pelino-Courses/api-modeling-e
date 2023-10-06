@@ -1,0 +1,111 @@
+<!-- add_schedule.html -->
+<!DOCTYPE html>
+<html>
+<head>
+          <style>
+                    /* Reset default margin and padding */
+body, h1, p, label {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+}
+
+/* Center the form container */
+.form-container {
+  width: 80%;
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the h1 element */
+h1 {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  color: #333; /* Dark gray color */
+  margin-bottom: 20px;
+}
+
+/* Style for form fields */
+.form-field {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #007bff; /* Blue color */
+}
+
+input[type="text"], select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Style for the submit button */
+.submit-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff; /* Blue color */
+  color: #fff; /* White color */
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3; /* Darker blue color on hover */
+}
+          </style>
+ <!-- add_schedule.html -->
+
+  <title>Add Schedule</title>
+  <!-- Link to your custom CSS file -->
+ 
+</head>
+<body>
+  <div class="form-container">
+    <h1>Add Schedule</h1>
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-field">
+        <label for="{{ form.event_managment.id_for_label }}">Event:</label>
+        {{ form.event_managment }}
+      </div>
+      <div class="form-field">
+        <label for="{{ form.start_time.id_for_label }}">Start Time:</label>
+        {{ form.start_time }}
+      </div>
+      <div class="form-field">
+        <label for="{{ form.end_time.id_for_label }}">End Time:</label>
+        {{ form.end_time }}
+      </div>
+      <div class="form-field">
+        <label for="{{ form.topic.id_for_label }}">Topic:</label>
+        {{ form.topic }}
+      </div>
+      <div class="form-field">
+        <label for="{{ form.speaker_management.id_for_label }}">Speaker:</label>
+        {{ form.speaker_management }}
+      </div>
+      <button type="submit" class="submit-btn">Save</button>
+    </form>
+  </div>
+  <h2><a href="/list_of_all_schedules">back to list</a></h2>
+</body>
+</html>
